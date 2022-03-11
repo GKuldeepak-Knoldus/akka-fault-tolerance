@@ -49,7 +49,7 @@ class Supervision extends Actor with ActorLogging {
   }
 
   override def postRestart(reason: Throwable): Unit = {
-    log.info(s"System restarted as it encountered an Error with reason ${reason}")
+    log.info(s"System restarted as it encountered an Error with reason ${reason.getMessage} cause ${reason.getCause}")
   }
 
 }

@@ -21,8 +21,16 @@ class LifeCycle extends Actor with ActorLogging{
   }
 
   override def receive: Receive = {
-    case _ =>
-      println("Message Received.")
+    case message@_ =>
+      println(s"Message Received. $message" )
+  }
+
+  override def preRestart(reason: Throwable, message: Option[Any]): Unit = {
+    println(s"Restarting the system for reason ${reason}")
+  }
+
+  override def postRestart(reason: Throwable): Unit = {
+    log.info(s"System restarted as it encountered an Error with reason ${reason}")
   }
 
 }
